@@ -206,6 +206,7 @@ WHERE hiredate >= TO_DATE('19820101', 'YYYYMMDD');
 WHERE hiredate >= TO_DATE('1982/01/01', 'YYYY/MM/DD');
 WHERE hiredate >= TO_DATE('1982.01.01', 'YYYY.MM.DD');
 
+
 WHERE hiredate < TO_DATE('1982.01.01', 'YYYY.MM.DD');
 
 연도 두자리 밖에 안 보일때
