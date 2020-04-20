@@ -50,6 +50,7 @@ syntax :  기존 컬럼명 [ as ] 별칭명칭
 또한 오라클에서는 객체명을 대문자 처리하기 때문에 소문자로 별칭을 지정하기 위해서도
 더블쿼테이션을 사용한다
 
+
 SELECT userid as id, userid id2, userid 아이디
 FROM users;
 
