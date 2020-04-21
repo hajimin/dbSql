@@ -125,7 +125,7 @@ FROM
         (SELECT empno, ename
          FROM emp
          ORDER BY ename) a ) a 
-WHERE rn BETWEEN 1 + (:page - 1) * :pagesize AND :page * :pagesize;
+WHERE rn BETWEEN 1 + (:page - 1) * :pagesize AND :page * :pagesize; // 변수(공식을 적용)
 
 
 
@@ -236,9 +236,9 @@ FROM
 WHERE rn BETWEEN 11 AND 20;
 
 **신규문제
-PRPD 테이블을 PROD_LGU(내림차순),PROD_COST(오름)으로 정렬하여 페이징 처리 쿼리를 작성하세요
+PROD 테이블을 PROD_LGU(내림차순),PROD_COST(오름)으로 정렬하여 페이징 처리 쿼리를 작성하세요
 단, 페이지 사이즈는 5
-바인드 변수 사용할 것
+바인드 변수//공식 적용한 변수 사용할 것
 
 SELECT *
 FROM

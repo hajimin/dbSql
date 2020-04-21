@@ -139,3 +139,29 @@ SELECT *
 FROM emp
 WHERE job = 'SALESMAN' 
 OR empno BETWEEN '7800' AND '7899';
+
+SELECT *
+FROM emp
+ORDER BY 3;
+
+//½Ç½À dept
+SELECT *
+FROM dept
+ORDER BY loc;
+
+SELECT *
+FROM emp
+ORDER BY comm DESC
+WHERE comm IS NOT NULL
+AND ORDER BY empno; 
+
+SELECT *
+FROM emp
+WHERE comm != 0 
+ORDER BY comm DESC, empno;
+
+SELECT *
+FROM emp
+WHERE deptno in (10,30) 
+AND sal > 1500
+ORDER BY ename DESC;
