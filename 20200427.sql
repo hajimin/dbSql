@@ -154,58 +154,28 @@ FROM emp, dept
 WHERE emp.deptno = dept.deptno
   AND emp.sal > 2500; 
 
-//실습 join0_3
-SELECT emp.empno, emp.ename, emp.sal, dept.deptno, dept.dname
-FROM emp JOIN dept ON (emp.deptno = dept.deptno)
-  AND emp.sal > 2500 
-  AND emp.empno > 7600;
-
-//실습 join0_3 ORACLE문법으로
-SELECT emp.empno, emp.ename, dept.deptno, dept.dname
-FROM emp, dept
-WHERE emp.deptno = dept.deptno
-  AND emp.sal > 2500
-  AND emp.empno > 7600; 
-  
-//실습 join0_4
-SELECT emp.empno, emp.ename, emp.sal, dept.deptno, dept.dname
-FROM emp JOIN dept ON (emp.deptno = dept.deptno)
-  AND emp.deptno = 20
-  AND emp.sal > 2500 
-  AND emp.empno > 7600;
-  
-//실습 join0_4 ORACLE문법으로
-SELECT emp.empno, emp.ename, dept.deptno, dept.dname
-FROM emp, dept
-WHERE emp.deptno = dept.deptno
-  AND emp.deptno = 20
-  AND emp.sal > 2500
-  AND emp.empno > 7600;  
 
 
-//실습 join1
-SELECT lprod.lprod_gu, lprod.lprod_nm, prod.prod_id, prod.prod_name
-FROM prod JOIN lprod ON (prod.prod_lgu = lprod.lprod_gu);
 
-//실습 join2 - 데이터타입이 다름
-SELECT buyer.buyer_id, buyer.buyer_name, prod.prod_id, prod.prod_name
-FROM prod JOIN buyer ON (prod.prod_buyer = buyer.buyer_id);
 
-//실습 join0_4 ORACLE문법으로
-SELECT member.member_id, member.member_name, prod.prod_id, prod.prod_name, cart.cart_qty
-FROM prod,cart,member
-WHERE  prod.prod_id = cart.cart_prod
-AND member.member_id = cart.cart_member;
-  
-SELECT member.member_id, member.member_name, prod.prod_id, prod.prod_name, cart.cart_qty
-FROM prod JOIN buyer ON (member.member_id = cart.cart_prod)
-AND JOIN cart ON (cart.cart_prod  = prod.prod_id);
 
-SELECT *
-FROM cart;
 
-SELECT *
-FROM member;
 
-SELECT *
-FROM prod;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
