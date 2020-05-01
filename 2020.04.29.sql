@@ -221,5 +221,12 @@ WHERE sal > (SELECT avg(sal)
              FROM emp);
              
              
+SELECT *
+FROM emp
+WHERE hiredate BETWEEN TO_DATE ('19820101', 'YYYYMMDD') AND TO_DATE ('19830101', 'YYYYMMD');
+      BETWEEN '19800101' AND '19821231';
 
-
+SELECT ename, hiredate
+FROM emp
+WHERE hiredate BETWEEN TO_DATE ('19820101', 'YYYYMMDD') AND TO_DATE ('19830101', 'YYYYMMDD'
+TO_CHAR(hiredate, 'YYYYMMDD')

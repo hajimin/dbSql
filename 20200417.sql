@@ -47,6 +47,13 @@ SELECT ename, hiredate
 FROM emp
 WHERE hiredate BETWEEN TO_DATE ('19820101', 'YYYYMMDD') AND TO_DATE ('19830101', 'YYYYMMDD');
 
+
+SELECT *
+FROM emp
+WHERE hiredate BETWEEN TO_DATE ('19800101', 'YYYYMMDD') AND TO_DATE ('19821231', 'YYYYMMDD');
+
+
+
 SELECT ename, hiredate
 FROM emp
 WHERE hiredate >= TO_DATE ('19820101', 'YYYYMMDD') 
@@ -279,3 +286,24 @@ job을 기준으로 오름차순 정렬하고 job이 같을 경우 입사일자로 내림차순 정렬
 SELECT *
 FROM emp
 ORDER BY job ASC, hiredate DESC;
+
+
+SELECT *
+FROM emp
+WHERE deptno IN (10,20);
+
+
+SELECT a.*
+FROM 
+(SELECT ROWNUM rn, a.*
+FROM
+(SELECT *
+ FROM emp
+ ORDER BY ename asc) a ) a
+ WHERE rn BETWEEN 1 + (:page -1) * :pagesize AND :page * :pagesize;
+
+
+SELECT *
+FROM emp
+WHERE ename LIKE 'S%T%H'
+AND deptno NOT IN(15);
