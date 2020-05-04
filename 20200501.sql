@@ -321,7 +321,8 @@ WHERE cid = 1 AND pid IN(SELECT pid
                          WHERE cid = 2);
                          
                          
-[sub7]                         
+[sub7]  
+조인을 이용한 방법
 SELECT c.cid, cnm, c.pid, pnm, day, cnt
 FROM cycle c JOIN customer ON(customer.cid = c.cid AND c.cid = 1)
            JOIN product ON(product.pid = c.pid) AND c.pid IN(SELECT pid
