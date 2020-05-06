@@ -267,19 +267,110 @@ case, DECODE
 
 [옵션]
 과제3
-햄버거지수 sql을 다른형태로 도전하기
+햄버거지수 sql을 다른형태로 도전하기??
+
+
+
+SELECT a.*, b.sido, b.sigungu, sal_idx
+FROM
+(SELECT ROWNUM rn, a.sido, a.sigungu, a.city_idx
+FROM
+(SELECT ROWNUM, bk.sido, bk.sigungu, bk.cnt, kfc.cnt, mac.cnt, lot.cnt,
+                ROUND((bk.cnt + kfc.cnt + mac.cnt) / lot.cnt, 2) city_idx
+FROM
+(SELECT SIDO, SIGUNGU, count(*) cnt
+FROM fastfood
+WHERE gb = '버거킹'
+GROUP BY sido, sigungu) bk,
+
+(SELECT SIDO, SIGUNGU, count(*) cnt
+ FROM fastfood
+ WHERE gb = 'KFC'
+ GROUP BY sido, sigungu)kfc,
+                        
+(SELECT SIDO, SIGUNGU, count(*) cnt
+ FROM fastfood
+ WHERE gb = '맥도날드'
+ GROUP BY sido, sigungu) mac,
+                                                 
+(SELECT SIDO, SIGUNGU, count(*) cnt
+FROM fastfood
+ WHERE gb = '롯데리아'
+ GROUP BY sido, sigungu) lot
+ 
+ WHERE bk.sido = kfc.sido
+ AND bk.sigungu = kfc.sigungu
+ AND bk.sido = mac.sido
+ AND bk.sigungu = mac.sigungu
+ AND bk.sido = lot.sido
+ AND bk.sigungu = lot.sigungu
+ ORDER BY city_idx DESC)a)a,
+(SELECT ROWNUM rn,f.*
+ FROM
+    (SELECT sido, sigungu, ROUND(sal / people, 2) sal_idx
+     FROM tax 
+     ORDER BY sal_idx DESC)f)b
+WHERE a.rn = b.rn;
+
+
+[옵션]
+과제2
+햄버거 도시발전지수를 구하기 위해 4개의 인라인 뷰를 사용했는데,(FASTFOOD 테이블을 4번 사용)
+이를 개선하여 테이블을 한번만 읽는 형태로 쿼리를 개선 (FASTFOOD 테이블을 1번만 사용)
+case, DECODE
+
+개별햄버거의 주소(파파이스, 맘스터치 제외하고 계산)
+SELECT a.rank, a.sido, a.sigungu, a.city_idx, b.sido, b.sigungu, b.tax
+FROM
+(SELECT ROWNUM rank, sido, sigungu, city_idx
+FROM
+(SELECT sido, sigungu, ROUND((kfc + mac + bk) / NVL(lot,1),2) city_idx
+FROM
+(SELECT sido, sigungu,
+        NVL(sum(CASE WHEN gb = '롯데리아' THEN 1 END), 1) lot, 
+        NVL(sum(CASE WHEN gb = 'KFC' THEN 1 END), 0) kfc,
+        NVL(sum(CASE WHEN gb = '맥도날드' THEN 1 END), 0) mac, 
+        NVL(sum(CASE WHEN gb = '버거킹' THEN 1 END), 0) bk
+FROM fastfood
+WHERE gb IN ('버거킹', 'KFC', '맥도날드', '롯데리아')
+--ORDER BY sido, sigungu, gb
+GROUP BY sido, sigungu)
+ORDER BY city_idx DESC))a,
+(SELECT ROWNUM rank, sido, sigungu, tax
+FROM
+(SELECT sido, sigungu, ROUND(sal/people,2) tax
+FROM tax
+ORDER BY tax DESC))b
+WHERE a.rank(+) = b.rank
+ORDER BY b.rank;
 
 
 
 
-(select count(*) FROM FASTFOOD a WHERE gb IN ('롯데리아'))
+
+
+SELECT sido, sigungu
+FROM tax
+
+MINUS
+
+SELECT sido, sigungu
+FROM fastfood
+GROUP BY sido, sigungu;
+
+
+과제3
+스칼라이용
+SELECT 시도, 시군구, (KFC 스칼라 서브쿼리), (버거킹 스칼라 서브쿼리),(...)
+FROM
 
 
 
-SELECT sido, sigungu, s.count(*)
-FROM FASTFOOD f JOIN FASTFOOD s ON(f.sido = s.sigungu)
-AND f.gb IN ('버거킹','맥도날드','KFC')
-AND s.gb IN ('롯데리아');
+
+
+
+
+
 
 
 
