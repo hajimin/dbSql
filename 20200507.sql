@@ -144,11 +144,3 @@ INSERT INTO dept_test VALUES (99,'ddit2','daejeon');
 
 SELECT *
 FROM dept_test;
-
-
-
-
-
-
-
-
