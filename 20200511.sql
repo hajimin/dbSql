@@ -314,14 +314,3 @@ SEQUENCE 를 통한 중복되지 않는 empno 값 생성하여 insert 하기
 INSERT INTO emp_test VALUES (seq_emp.NEXTVAL, 'sally',88); 
 
 
-
-
-
-
-
-
-
-
-
-
-
