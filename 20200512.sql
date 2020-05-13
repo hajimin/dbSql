@@ -357,6 +357,8 @@ WHERE emp.deptno = dept.deptno
 AND emp.empno = 7788;
 
 
+
+
 --EXPLAIN PLAN FOR(모든 직원 조회시 hash로 풀렸었음)
 --SELECT *
 --FROM emp, dept
@@ -379,7 +381,7 @@ FROM TABLE(dbms_xplan.display);
 ----------------------------------------------------------------------------------------
 
 
-입력할땐 불리 검색할 때는 좋음
+입력할땐 불리 검색할 때는 좋음-
 
 
 
