@@ -14,7 +14,12 @@ DROP INDEX idx_dept_test2_01 ON dept_test2 (deptno);
 DROP INDEX idx_dept_test2_02 ON dept_test2 (dname);
 DROP INDEX idx_dept_test2_03 ON dept_test2 (deptno,dname);
 
-실습 3
+실습 3 제출
+CREATE UNIQUE INDEX idx_emp ON emp(empno);
+CREATE INDEX idx_emp_1 ON emp(ename);
+CREATE INDEX idx_emp_3 ON emp(deptno,sal,mgr);
+CREATE INDEX idx_emp_5 ON emp(deptno,hiredate);
+
 
 실습 4 과제
 
@@ -99,6 +104,9 @@ INDEX ? SCAN : 선행컬럼이 주어지지 않고 후행컬럼만 조회
 TABLE ACCESS FULL
 
 조인 3개
+Nested Loop Join
+Sort Merge Join
+Hash Join
 
 정렬 
 SORT AGGREGATE (union)그룹함수 적용위해 정렬작업
